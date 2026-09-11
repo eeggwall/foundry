@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "castles"
+version = "0.0.0"
+description = "Castle Foundry — tools for the URD-grammar castles of Project Euler 502."
+requires-python = ">=3.11"
+authors = [
+  { name = "Ch4zm of Hellmouth" },
+  { name = "Engelbert Eggwall" },
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "ruff>=0.5",
+  "mypy>=1.10",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["castles"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["castles"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
