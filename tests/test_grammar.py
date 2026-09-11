@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from castles.castle import Castle
-from castles.grammar import is_castle_string, is_tower, validate
+from castles.grammar import ParseError, is_castle_string, is_tower, validate
 from castles.repr.urd import to_urd
 
 # --- tower words (structural only, parity ignored) -----------------------
@@ -46,7 +46,7 @@ def test_is_tower_rejects(word: str) -> None:
     assert not is_tower(word)
 
 
-# --- full castle strings --------------------------------------------------
+# --- validate: True | ParseError -----------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -58,45 +58,47 @@ def test_is_tower_rejects(word: str) -> None:
     ],
 )
 def test_validate_accepts_even_castles(s: str) -> None:
+    assert validate(s) is True
+
+
+@pytest.mark.parametrize(
+    ("s", "reason"),
+    [
+        ("", "not_castle_shape"),
+        ("RRRR", "not_castle_shape"),
+        ("UUDD", "zero_width_block"),  # tower "UD"
+        ("UURDURDD", "touching_blocks"),  # tower "URDURD"
+        ("UUURDRRD", "unbalanced"),  # tower "UURDRR" (two U, one D)
+        ("UDRURDRUD", "drops_below_base"),  # tower "DRURDRU"
+        ("UD", "odd_blocks"),
+        ("UUURDDD", "odd_blocks"),
+    ],
+)
+def test_validate_returns_reason(s: str, reason: str) -> None:
+    err = validate(s)
+    assert isinstance(err, ParseError)
+    assert err.reason == reason
+
+
+def test_validate_rejects_odd_blocks() -> None:
+    # The wiki's 3-block example is well-formed but has an odd block count.
+    s = "UURDRURDD"
     assert is_castle_string(s)
-    assert validate(s)
+    err = validate(s)
+    assert isinstance(err, ParseError)
+    assert err.reason == "odd_blocks"
 
 
-@pytest.mark.parametrize(
-    "s",
-    [
-        "UURDRURDD",  # wiki example: 3 blocks (odd)
-        "UD",  # 1 block (odd)
-        "UUURDDD",  # 3 blocks (odd)
-    ],
-)
-def test_validate_rejects_odd_blocks(s: str) -> None:
-    assert is_castle_string(s)  # well-formed encoding ...
-    assert not validate(s)  # ... but an odd number of blocks
-
-
-@pytest.mark.parametrize(
-    "s",
-    [
-        "",
-        "U",
-        "D",
-        "UU",
-        "DD",
-        "RRRR",
-        "UUDD",  # tower "UD" is a zero-width block
-        "UDDD",  # not U (tower) D shape
-        "UUDDU",  # trailing U
-    ],
-)
-def test_validate_rejects_malformed(s: str) -> None:
-    assert not validate(s)
+def test_validate_type_error() -> None:
+    err = validate(123)
+    assert isinstance(err, ParseError)
+    assert err.reason == "type_error"
 
 
 def test_validate_is_structure_and_parity() -> None:
-    # validate == well-formed AND even number of D steps
     for s in ["UURDD", "UUURDDD", "UUUURDDDD", "UUUURRRRRRRRDDDD"]:
-        assert validate(s) == (is_castle_string(s) and s.count("D") % 2 == 0)
+        even = s.count("D") % 2 == 0
+        assert (validate(s) is True) == (is_castle_string(s) and even)
 
 
 # --- round-trip through the castle model ----------------------------------
@@ -115,10 +117,9 @@ def test_to_urd_rectangle() -> None:
 
 
 def test_grammar_accepts_every_brute_force_output() -> None:
-    # A grammar-level consistency check: every castle the enumerator emits must
-    # be grammar-valid and have an even number of blocks.
+    # Every castle the enumerator emits must be grammar-valid and even-blocked.
     from castles.enumerate import enumerate_brute
 
     for w, h in [(1, 2), (2, 2), (3, 2), (4, 2), (3, 3), (4, 3)]:
         for castle in enumerate_brute(w, h):
-            assert validate(to_urd(castle)), (w, h, to_urd(castle))
+            assert validate(to_urd(castle)) is True, (w, h, to_urd(castle))

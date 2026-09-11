@@ -10,7 +10,7 @@ profiles and tower words, independent of the even-block rule.
 from __future__ import annotations
 
 from ..castle import Castle
-from ..grammar import is_castle_string
+from ..grammar import structural_error
 
 
 def tower_word(profile: tuple[int, ...]) -> str:
@@ -36,12 +36,14 @@ def to_urd(castle: Castle) -> str:
 def from_urd(s: str) -> Castle:
     """Rebuild the castle encoded by a (well-formed) URD string.
 
-    Raises :class:`ValueError` if ``s`` is not ``U (tower) D`` with a valid
-    tower word.  The even-block rule is deliberately *not* enforced here -- the
-    encoding is a bijection over all profiles, castle-valid or not.
+    Raises :class:`~castles.grammar.ParseError` if ``s`` is not ``U (tower) D``
+    with a valid tower word.  The even-block rule is deliberately *not*
+    enforced here -- the encoding is a bijection over all profiles,
+    castle-valid or not.
     """
-    if not is_castle_string(s):
-        raise ValueError(f"not a well-formed castle string: {s!r}")
+    err = structural_error(s)
+    if err is not None:
+        raise err
     tower = s[1:-1]
     profile: list[int] = []
     height = 0
@@ -52,7 +54,20 @@ def from_urd(s: str) -> Castle:
             height -= 1
         elif ch == "R":
             profile.append(height)
-        # any other character is impossible: is_castle_string already accepted it
+        # any other character is impossible: structural_error already accepted it
     width = len(profile)
     total_height = 1 + max(profile, default=0)
     return Castle(width, total_height, tuple(profile))
+
+
+def parse(s: str) -> Castle:
+    """Parse a URD castle string into a :class:`Castle`.
+
+    Raises :class:`~castles.grammar.ParseError` on malformed input.
+    """
+    return from_urd(s)
+
+
+def unparse(castle: Castle) -> str:
+    """The canonical URD string for ``castle``."""
+    return to_urd(castle)
