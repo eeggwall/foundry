@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Castle Foundry</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Castle Foundry</h1>
+    <p class="tagline">Design, inspect, and browse the castles of Project Euler 502.</p>
+    <div id="status">Loading…</div>
+  </header>
+
+  <nav id="tabs">
+    <button data-tab="designer" class="active">Designer</button>
+    <button data-tab="inspector">Inspector</button>
+    <button data-tab="zoo">Zoo</button>
+  </nav>
+
+  <main>
+    <section id="tab-designer" class="tab active">
+      <h2>Designer</h2>
+      <div class="controls">
+        <label>Width <input id="w" type="number" min="1" max="12" value="5" /></label>
+        <label>Height <input id="h" type="number" min="1" max="12" value="4" /></label>
+        <div class="generators">
+          <button data-gen="random">Random</button>
+          <button data-gen="tallest">Tallest</button>
+          <button data-gen="widest">Widest</button>
+          <button data-gen="symmetric">Symmetric</button>
+        </div>
+        <fieldset class="toggles">
+          <legend>Features</legend>
+          <label><input type="checkbox" data-feature="symmetric" /> symmetric</label>
+          <label><input type="checkbox" data-feature="convex" /> convex</label>
+          <label><input type="checkbox" data-feature="concave" /> concave</label>
+        </fieldset>
+      </div>
+      <div class="designer-body">
+        <div id="grid" class="grid"></div>
+        <div class="preview">
+          <div id="designer-svg" class="svg-wrap"></div>
+          <div id="designer-facts" class="facts"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-inspector" class="tab">
+      <h2>Inspector</h2>
+      <div class="controls">
+        <input id="urd" type="text" placeholder="UURDD" spellcheck="false" />
+        <button id="inspect-btn">Inspect</button>
+      </div>
+      <div class="preview">
+        <div id="inspector-svg" class="svg-wrap"></div>
+        <div id="inspector-facts" class="facts"></div>
+      </div>
+    </section>
+
+    <section id="tab-zoo" class="tab">
+      <h2>Zoo</h2>
+      <div id="zoo-grid" class="zoo-grid"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

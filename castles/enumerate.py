@@ -155,3 +155,21 @@ def count_dp(w: int, h: int) -> int:
     if h == 1:
         return 0
     return tower_counts(h - 1, w)[1] - tower_counts(h - 2, w)[1]
+
+
+_MAX_CANONICAL_INDEX = 100_000
+
+
+def canonical_index(castle: Castle) -> int | None:
+    """0-based rank of ``castle`` among all castles of its width and height,
+    ordered by tower profile.
+
+    Returns ``None`` if the castle is not a valid even-block castle, or if its
+    class is too large to enumerate (``h**w > 100000``).
+    """
+    if not castle.has_even_blocks:
+        return None
+    if castle.height**castle.width > _MAX_CANONICAL_INDEX:
+        return None
+    profiles = sorted(c.profile for c in enumerate_brute(castle.width, castle.height))
+    return profiles.index(castle.profile)
