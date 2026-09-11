@@ -1,5 +1,6 @@
 .claude
 .DS_Store
+.mcp.json
 prompt.txt
 
 # Python

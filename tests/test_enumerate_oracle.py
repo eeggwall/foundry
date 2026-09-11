@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from castles.enumerate import count, count_brute, enumerate_brute
+from castles.enumerate import count, count_brute, count_dp, enumerate_brute, tower_counts
 from castles.repr.urd import to_urd
 
 # Published Project Euler 502 values (from the problem statement / wiki).
@@ -50,3 +50,24 @@ def test_brute_force_castles_are_valid() -> None:
             assert castle.width == w
             assert castle.height == h
             assert castle.has_even_blocks
+
+
+# --- grammar-recursion DP (Phase 2) ---------------------------------------
+
+
+@pytest.mark.parametrize(("w", "h", "expected"), [(w, h, n) for (w, h), n in PUBLISHED.items()])
+def test_count_dp_matches_published(w: int, h: int, expected: int) -> None:
+    assert count_dp(w, h) == expected
+
+
+@pytest.mark.parametrize("w", range(1, 7))
+@pytest.mark.parametrize("h", range(1, 7))
+def test_count_dp_matches_closed_form(w: int, h: int) -> None:
+    assert count_dp(w, h) == count(w, h), (w, h)
+
+
+@pytest.mark.parametrize("k", range(0, 5))
+@pytest.mark.parametrize("w", range(0, 6))
+def test_tower_counts_total_is_geometric(k: int, w: int) -> None:
+    even, odd = tower_counts(k, w)
+    assert even + odd == (k + 1) ** w
