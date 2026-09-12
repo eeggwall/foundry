@@ -3,67 +3,186 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Castle Foundry</title>
+  <title>CASTLE FOUNDRY :: ENFILADE TERMINAL</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Castle Foundry</h1>
-    <p class="tagline">Design, inspect, and browse the castles of Project Euler 502.</p>
-  </header>
+<main class="crt">
 
-  <nav id="tabs">
-    <button data-tab="designer" class="active">Designer</button>
-    <button data-tab="inspector">Inspector</button>
-    <button data-tab="zoo">Zoo</button>
-  </nav>
+<div class="header-block">
+<pre class="banner">
+  ____    _    ____ _____ _     _____   _____ ___  _   _ _   _ ____  ______   __
+ / ___|  / \  / ___|_   _| |   | ____| |  ___/ _ \| | | | \ | |  _ \|  _ \ \ / /
+| |     / _ \ \___ \ | | | |   |  _|   | |_ | | | | | | |  \| | | | | |_) \ V /
+| |___ / ___ \ ___) || | | |___| |___  |  _|| |_| | |_| | |\  | |_| |  _ < | |
+ \____/_/   \_\____/ |_| |_____|_____| |_|   \___/ \___/|_| \_|____/|_| \_\|_|
+</pre>
+<p class="tagline">// enfilade center for recreational mathematics :: hellmouth community college
+  <span class="blink">_</span></p>
+<p class="subtagline">// castle representations (r) &middot; enumeration (e) &middot; numbers (n) &middot; zoo (z)</p>
+</div>
 
-  <main>
-    <section id="tab-designer" class="tab active">
-      <h2>Designer</h2>
-      <div class="controls">
-        <label>Width <input id="w" type="number" min="1" max="12" value="5" /></label>
-        <label>Height <input id="h" type="number" min="1" max="12" value="4" /></label>
-        <div class="generators">
-          <button data-gen="random">Random</button>
-          <button data-gen="tallest">Tallest</button>
-          <button data-gen="widest">Widest</button>
-          <button data-gen="symmetric">Symmetric</button>
+<hr class="sep" />
+
+<div class="tabs" role="tablist">
+  <button class="tab active" data-tab="designer"  role="tab" aria-selected="true">designer</button>
+  <button class="tab"         data-tab="inspector" role="tab" aria-selected="false">inspector</button>
+  <button class="tab"         data-tab="zoo"       role="tab" aria-selected="false">zoo</button>
+  <button class="tab"         data-tab="about"     role="tab" aria-selected="false">about</button>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~ DESIGNER ~~~~~~~~~~~~~~~~~~~~ -->
+<div id="tab-designer" class="tab-panel active">
+
+  <section class="panel field-panel">
+    <h2>&gt; castle field <span class="hint" id="designer-hint">click cells to raise / lower towers</span></h2>
+    <div class="canvas-wrap">
+      <canvas id="designer-canvas" width="980" height="620"></canvas>
+    </div>
+    <div class="status" id="designer-status">[ idle ]</div>
+  </section>
+
+  <section class="panel controls-panel">
+    <div class="dim-row">
+      <div class="dim">
+        <label for="w-num">width</label>
+        <div class="slider-pair">
+          <input id="w-slider" type="range" min="1" max="200" value="9" />
+          <input id="w-num" type="number" min="1" max="200" value="9" />
         </div>
-        <fieldset class="toggles">
-          <legend>Features</legend>
-          <label><input type="checkbox" data-feature="symmetric" /> symmetric</label>
-          <label><input type="checkbox" data-feature="convex" /> convex</label>
-          <label><input type="checkbox" data-feature="concave" /> concave</label>
-        </fieldset>
       </div>
-      <div class="designer-body">
-        <div id="grid" class="grid"></div>
-        <div class="preview">
-          <div id="designer-svg" class="svg-wrap"></div>
-          <div id="designer-facts" class="facts"></div>
+      <div class="dim">
+        <label for="h-num">height</label>
+        <div class="slider-pair">
+          <input id="h-slider" type="range" min="1" max="100" value="5" />
+          <input id="h-num" type="number" min="1" max="100" value="5" />
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="tab-inspector" class="tab">
-      <h2>Inspector</h2>
-      <div class="controls">
-        <input id="urd" type="text" placeholder="UURDD" spellcheck="false" />
-        <button id="inspect-btn">Inspect</button>
+    <div class="ctrl-columns">
+      <div class="ctrl-col">
+        <label class="sect-label">// generators</label>
+        <div class="btn-row">
+          <button data-gen="random">random</button>
+          <button data-gen="tallest">tallest</button>
+          <button data-gen="widest">widest</button>
+          <button data-gen="symmetric">symmetric</button>
+          <button data-gen="clear" class="warn">clear</button>
+        </div>
       </div>
-      <div class="preview">
-        <div id="inspector-svg" class="svg-wrap"></div>
-        <div id="inspector-facts" class="facts"></div>
+      <div class="ctrl-col">
+        <label class="sect-label">// feature filter (random)</label>
+        <div class="btn-row toggles">
+          <label class="toggle"><input type="checkbox" data-feature="symmetric" /> symmetric</label>
+          <label class="toggle"><input type="checkbox" data-feature="convex" /> convex</label>
+          <label class="toggle"><input type="checkbox" data-feature="concave" /> concave</label>
+        </div>
       </div>
-    </section>
+      <div class="ctrl-col">
+        <label class="sect-label">// display</label>
+        <div class="btn-row">
+          <button id="buttonGrid">grid</button>
+          <button id="buttonAscii">ascii</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="tab-zoo" class="tab">
-      <h2>Zoo</h2>
-      <div id="zoo-grid" class="zoo-grid"></div>
-    </section>
-  </main>
+  <section class="panel">
+    <h2>&gt; fact sheet</h2>
+    <div class="facts" id="designer-facts"></div>
+  </section>
 
-  <script type="module" src="app.js"></script>
+  <section class="panel ascii-panel hidden" id="designer-ascii-panel">
+    <h2>&gt; ascii dump</h2>
+    <pre class="ascii-dump" id="designer-ascii"></pre>
+  </section>
+
+</div><!-- /#tab-designer -->
+
+<!-- ~~~~~~~~~~~~~~~~~~~~ INSPECTOR ~~~~~~~~~~~~~~~~~~~~ -->
+<div id="tab-inspector" class="tab-panel">
+
+  <section class="panel field-panel">
+    <h2>&gt; specimen <span class="hint">urd-word entry</span></h2>
+    <div class="canvas-wrap">
+      <canvas id="inspector-canvas" width="980" height="620"></canvas>
+    </div>
+    <div class="status" id="inspector-status">[ awaiting input ]</div>
+  </section>
+
+  <section class="panel">
+    <h2>&gt; urd word</h2>
+    <div class="urd-row">
+      <input id="urd" type="text" placeholder="e.g. UUURDURDDD" spellcheck="false" autocomplete="off" />
+      <button id="inspect-btn">inspect</button>
+    </div>
+    <p class="mono-tip">// U = up, R = right, D = down. must start U and end D.</p>
+  </section>
+
+  <section class="panel">
+    <h2>&gt; fact sheet</h2>
+    <div class="facts" id="inspector-facts"></div>
+  </section>
+
+  <section class="panel ascii-panel hidden" id="inspector-ascii-panel">
+    <h2>&gt; ascii dump</h2>
+    <pre class="ascii-dump" id="inspector-ascii"></pre>
+  </section>
+
+</div><!-- /#tab-inspector -->
+
+<!-- ~~~~~~~~~~~~~~~~~~~~ ZOO ~~~~~~~~~~~~~~~~~~~~ -->
+<div id="tab-zoo" class="tab-panel">
+  <section class="panel">
+    <h2>&gt; enfilade castle zoo <span class="hint">click any specimen to inspect</span></h2>
+    <div id="zoo-grid" class="zoo-grid"></div>
+  </section>
+</div><!-- /#tab-zoo -->
+
+<!-- ~~~~~~~~~~~~~~~~~~~~ ABOUT ~~~~~~~~~~~~~~~~~~~~ -->
+<div id="tab-about" class="tab-panel">
+  <section class="panel">
+    <h2>&gt; readme.txt</h2>
+    <pre class="ascii-dump about">
+CASTLE FOUNDRY
+==============
+Enfilade Center for Recreational Mathematics at Hellmouth Community College.
+
+Associated faculty:
+  - Ch4zm of Hellmouth     (@ch4zm)
+  - Engelbert Eggwall      (@eeggwall)
+
+Divisions:
+  (R) castle representations  ... dyck words, tree encodings, matrices
+  (E) castle enumeration      ... new counting methods
+  (N) castle numbers          ... the numbers that arise; the hard ones
+  (Z) castle zoo              ... online gallery of specimens
+
+CONTROLS
+========
+Designer   :: click grid cells to raise / lower tower heights.
+              buttons generate random, tallest, widest, or symmetric castles.
+              feature toggles filter random generation.
+Inspector  :: paste a URD-word (e.g. UUURDURDDD) to view a fact sheet.
+Zoo        :: click any specimen to inspect it.
+
+KEYBOARD
+========
+  G   toggle grid
+  A   toggle ascii dump
+
+  // dusty basement computer lab, somewhere outside las vegas
+    </pre>
+  </section>
+</div><!-- /#tab-about -->
+
+<hr class="sep" />
+<p class="footer">// castle foundry :: enfilade terminal :: v0.1 // <span class="blink">_</span></p>
+
+</main>
+
+<script type="module" src="app.js"></script>
 </body>
 </html>
