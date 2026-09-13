@@ -8,16 +8,14 @@ Lead: Castle Zoo Division (Z), with Representations (R).
 
 Build a portable, version-controlled Markdown wiki that serves both as a mathematical taxonomy and as an AI-accessible institutional memory. The zoo catalogs particular specimens; the Atlas explains the families, properties, representations, and claims that make those specimens interesting.
 
-The Atlas must remain useful without Castle Foundry, a particular AI vendor, a running server, or the original conversations that produced it. It begins in an isolated folder and can later become a separate repository.
+The Atlas must remain useful without Castle Foundry, a particular AI vendor, a running server, or the original conversations that produced it. It should be a separate repository.
 
 This is the first foundation because research, publications, and software need a common vocabulary. It is not an attempt to classify every possible castle before research can begin.
 
 ## Boundaries
 
-- `foundations/` contains planning documents, not the future knowledge base.
-- The proposed knowledge base lives entirely inside `enfilade-atlas/`, initially tracked by the containing repository.
-- Do not create a nested Git repository or submodule merely to signal independence.
-- All internal links, illustrations, templates, and reading instructions stay within the Atlas folder.
+- The proposed knowledge base lives entirely inside `enfilade-atlas/` repository, initially tracked by the containing repository.
+- All internal links, illustrations, teml;p......................plates, and reading instructions stay within the Atlas folder.
 - External software is cited by repository, revision, and path, not imported as a requirement for reading the wiki.
 - No webapp changes, database, generated documentation site, or MCP server are required for the first release.
 - Institutional fiction will be governed separately by Plan 03 (institution and Eggwall). It is not mathematical evidence.
