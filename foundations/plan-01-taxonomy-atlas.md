@@ -12,10 +12,21 @@ The Atlas must remain useful without Castle Foundry, a particular AI vendor, a r
 
 This is the first foundation because research, publications, and software need a common vocabulary. It is not an attempt to classify every possible castle before research can begin.
 
+## Divisions
+
+The Atlas is the responsibility of the Centre's four divisions, defined in full in [Plan 03](plan-03-institution-and-eggwall.md):
+
+- **Representations (R):** encodings, equivalences, grammars, and what survives translation.
+- **Enumeration (E):** counting methods, generating functions, recurrences, and sampling.
+- **Numbers (N):** sequences, exact arithmetic, difficult scales, and numerical patterns.
+- **Zoo (Z):** specimens, taxonomy, comparative morphology, and public interpretation.
+
+The Zoo division leads the Atlas, with Representations supporting its encoding work. See [Plan 03](plan-03-institution-and-eggwall.md) for the canonical division definitions.
+
 ## Boundaries
 
 - The proposed knowledge base lives entirely inside `enfilade-atlas/` repository, initially tracked by the containing repository.
-- All internal links, illustrations, teml;p......................plates, and reading instructions stay within the Atlas folder.
+- All internal links, illustrations, templates, and reading instructions stay within the Atlas folder.
 - External software is cited by repository, revision, and path, not imported as a requirement for reading the wiki.
 - No webapp changes, database, generated documentation site, or MCP server are required for the first release.
 - Institutional fiction will be governed separately by Plan 03 (institution and Eggwall). It is not mathematical evidence.

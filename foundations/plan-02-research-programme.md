@@ -10,7 +10,18 @@ Turn the work on Project Euler 502 into a sustained programme of mathematical in
 
 The programme should produce definitions, proofs, counterexamples, algorithms, sequences, software, and teaching material. Its success is measured by useful, checkable work, not the number of proposed divisions or repositories.
 
-Use the conventions and evidence model in [Plan 01](plan-01-taxonomy-atlas.md). Programmes below are research directions, not software package boundaries. The existing R/E/N/Z divisions remain the starting institutional structure.
+Use the conventions and evidence model in [Plan 01](plan-01-taxonomy-atlas.md). Programmes below are research directions, not software package boundaries.
+
+## Divisions
+
+The programme is organised around four divisions. A division is an intellectual responsibility — a way of asking questions — not a repository, a programming language, or a permanent staff allocation:
+
+- **Representations (R):** encodings, equivalences, grammars, and what survives translation.
+- **Enumeration (E):** counting methods, generating functions, recurrences, and sampling.
+- **Numbers (N):** sequences, exact arithmetic, difficult scales, and numerical patterns.
+- **Zoo (Z):** specimens, taxonomy, comparative morphology, and public interpretation.
+
+These letters name the divisions and anchor the project codes below. A code such as `E/N-02` spans two divisions (Enumeration and Numbers) and marks collaboration, not a new layer of bureaucracy. Enumeration leads this programme, with Representations, Numbers, and the Zoo supporting. The canonical division definitions and their institutional framing live in [Plan 03](plan-03-institution-and-eggwall.md).
 
 ## Source Dossier
 
