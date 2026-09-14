@@ -1,2 +1,17 @@
 .claude
 .DS_Store
+.mcp.json
+prompt.txt
+vii*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
