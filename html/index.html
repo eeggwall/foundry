@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enfilade Center for Recreational Mathematics -- Hellmouth Community College</title>
+<meta name="description" content="Index of reports, registry and related sites produced by the Enfilade Center at Hellmouth Community College.">
+<style>
+:root{
+  --sand:#C9BB9F;
+  --paper:#E4DAC1;
+  --paper2:#D8CCAE;
+  --lite:#F4EDDA;
+  --dark:#8C7D5F;
+  --edge:#6E6249;
+  --ink:#2B2620;
+  --soft:#5E5443;
+  --sky:#6FA9CB;
+  --deep:#2E5F7D;
+  --rust:#A2522A;
+  --mono:"DejaVu Sans Mono","Liberation Mono",Consolas,"Courier New",monospace;
+  --sans:"DejaVu Sans",Verdana,Geneva,Tahoma,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:22px 14px 40px;background:var(--sand);color:var(--ink);
+  font-family:var(--sans);font-size:14px;line-height:1.6}
+#grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.42;mix-blend-mode:multiply}
+.page{max-width:760px;margin:0 auto;position:relative;z-index:1}
+
+.win{background:var(--paper);border:1px solid var(--edge);
+  box-shadow:inset 1px 1px 0 var(--lite),inset -1px -1px 0 var(--dark),2px 2px 0 rgba(60,50,35,.25);
+  margin-bottom:16px}
+.win > .bar{background:var(--paper2);border-bottom:1px solid var(--edge);
+  box-shadow:inset 0 1px 0 var(--lite);
+  font-family:var(--mono);font-size:11px;font-weight:bold;letter-spacing:.14em;
+  color:var(--soft);padding:4px 9px 3px}
+.win > .in{padding:13px 15px 15px}
+.win > .in > :first-child{margin-top:0}
+.win > .in > :last-child{margin-bottom:0}
+
+.mast{display:flex;gap:14px;align-items:center;padding:12px 15px}
+.seal{flex:0 0 auto;width:62px;height:62px;border:2px solid var(--deep);
+  display:grid;place-items:center;background:#EEE6D0}
+.seal svg{width:44px;height:30px;display:block}
+.mast h1{margin:0;font-family:var(--mono);font-size:17px;letter-spacing:.04em;line-height:1.25}
+.mast .sub{font-family:var(--mono);font-size:11.5px;color:var(--soft);margin-top:3px}
+
+/* ---- tab bar ---- */
+nav.tabs{font-family:var(--mono);font-size:12px;padding:0;border-top:1px solid var(--dark);
+  box-shadow:inset 0 1px 0 var(--lite);background:var(--paper2);
+  display:flex;flex-wrap:wrap}
+nav.tabs a{color:var(--deep);text-decoration:none;white-space:nowrap;
+  padding:7px 13px 6px;border-right:1px solid var(--dark);letter-spacing:.06em}
+nav.tabs a:hover{background:var(--deep);color:var(--paper)}
+nav.tabs a[aria-current="page"]{background:var(--paper);color:var(--ink);font-weight:bold;
+  box-shadow:inset 0 2px 0 var(--rust)}
+
+/* ---- tab pages ---- */
+.tabpage{display:none}
+.tabpage.on{display:block}
+
+h2{font-family:var(--mono);font-size:14px;font-weight:bold;margin:0 0 9px}
+p{margin:0 0 10px}
+a{color:var(--deep)}
+a:hover{color:var(--rust)}
+hr{border:0;border-top:1px dashed var(--dark);margin:14px 0}
+.note{font-family:var(--mono);font-size:11.5px;color:var(--soft);line-height:1.65}
+:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:8px;top:8px;background:var(--paper);padding:6px 10px;z-index:9}
+
+/* ---- landing page list ---- */
+ul.pagelist{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:12.5px}
+ul.pagelist li{padding:7px 0;border-bottom:1px solid #BCAD8D}
+ul.pagelist li:last-child{border-bottom:0}
+ul.pagelist a{text-decoration:none;font-weight:bold;border-bottom:1px solid rgba(46,95,125,.4)}
+ul.pagelist a:hover{border-bottom-color:var(--rust)}
+ul.pagelist .d{color:var(--soft);display:block;margin-top:2px;font-size:11.5px}
+
+/* ---- index tables ---- */
+table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:12px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid #BCAD8D;vertical-align:top}
+th{font-weight:bold;font-size:10.5px;letter-spacing:.08em;color:var(--soft);
+  border-bottom:1px solid var(--edge);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.id,td.dv,td.up{white-space:nowrap;color:var(--soft)}
+td.ti a{text-decoration:none;border-bottom:1px solid rgba(46,95,125,.4)}
+td.ti a:hover{border-bottom-color:var(--rust)}
+.scroll{overflow-x:auto}
+.ft{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:bold;letter-spacing:.09em;
+  color:var(--deep);border:1px solid var(--sky);background:rgba(111,169,203,.16);
+  padding:1px 4px;border-radius:1px;vertical-align:1px}
+.st{white-space:nowrap;font-size:11px}
+.st.draft,.st.planned{color:var(--soft)}
+.st.super{color:var(--rust)}
+.led{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;
+  background:#B2A184;box-shadow:inset 0 0 0 1px rgba(40,34,26,.45)}
+.led.on{background:var(--sky);box-shadow:inset 0 0 0 1px rgba(40,34,26,.45),0 0 5px var(--sky)}
+.led.half{background:#D59A38;box-shadow:inset 0 0 0 1px rgba(40,34,26,.45)}
+
+dl.defs{margin:0;font-family:var(--mono);font-size:12px}
+dl.defs dt{font-weight:bold;float:left;clear:left;width:118px}
+dl.defs dd{margin:0 0 4px 118px;color:var(--soft)}
+
+/* ---- tractor-feed printout ---- */
+.printout{position:relative;background:#F2EAD6;
+  border-top:1px dashed var(--dark);border-bottom:1px dashed var(--dark);
+  border-left:1px solid var(--dark);border-right:1px solid var(--dark);
+  box-shadow:2px 3px 0 rgba(60,50,35,.2)}
+.printout::before,.printout::after{content:"";position:absolute;top:0;bottom:0;width:23px;
+  background-image:radial-gradient(circle at 11.5px 11px,#C9BB9F 3.4px,#A99870 3.9px,transparent 4.4px);
+  background-size:23px 22px;background-repeat:repeat-y}
+.printout::before{left:0;border-right:1px dashed #C3B392}
+.printout::after{right:0;border-left:1px dashed #C3B392}
+.printout .sheet{margin:0 23px;padding:20px 24px 22px;
+  background-image:repeating-linear-gradient(180deg,
+    rgba(111,169,203,.09) 0 45px, transparent 45px 90px);
+  background-position:0 20px;
+  font-family:var(--mono);font-size:12.5px;line-height:22.5px;letter-spacing:.02em;color:#332F2A}
+.printout .sheet p{margin:0 0 22.5px;max-width:58ch}
+.printout .sheet .hd{color:var(--soft);font-size:11px;letter-spacing:.1em;margin-bottom:22.5px}
+.printout .sheet .sig{margin:0;color:var(--soft)}
+
+footer{font-family:var(--mono);font-size:11px;color:var(--soft);line-height:1.7;padding:2px 4px 0}
+footer a{color:var(--soft)}
+.hits{display:inline-block;background:#241F1B;color:#D59A38;padding:1px 7px;
+  border:1px solid var(--edge);letter-spacing:.18em}
+
+@media(max-width:560px){
+  body{padding:12px 8px 30px}
+  .mast{flex-wrap:wrap}
+  nav.tabs a{padding:7px 10px 6px}
+  dl.defs dt{float:none;width:auto}
+  dl.defs dd{margin-left:0;margin-bottom:9px}
+  .printout::before,.printout::after{width:14px;background-size:14px 22px;
+    background-image:radial-gradient(circle at 7px 11px,#C9BB9F 2.4px,#A99870 2.8px,transparent 3.2px)}
+  .printout .sheet{margin:0 14px;padding:16px 12px}
+}
+
+/* If JS is off, show every page and hide the tab bar's active styling. */
+.no-js .tabpage{display:block}
+.no-js nav.tabs{display:none}
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
+<svg id="grain" aria-hidden="true"><filter id="gf"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gf)" opacity=".26"/></svg>
+
+<div class="page">
+
+<div class="win">
+  <div class="mast">
+    <div class="seal"><svg viewBox="0 0 88 60" aria-hidden="true"><g fill="#6FA9CB" stroke="#2E5F7D" stroke-width="2"><rect x="2" y="44" width="84" height="14" fill="#2E5F7D"/><rect x="16" y="30" width="56" height="14"/><rect x="16" y="16" width="14" height="14"/><rect x="44" y="16" width="14" height="14"/><rect x="44" y="2" width="14" height="14"/></g></svg></div>
+    <div>
+      <h1>Enfilade Center for Recreational Mathematics</h1>
+      <div class="sub">Hellmouth Community College &nbsp;/&nbsp; Old Drafting Laboratory</div>
+    </div>
+  </div>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#about" data-tab="about">about</a>
+    <a href="#reports" data-tab="reports">reports</a>
+    <a href="#projects" data-tab="projects">projects</a>
+    <a href="#divisions" data-tab="divisions">divisions</a>
+    <a href="#registry" data-tab="registry">registry</a>
+    <a href="#circulars" data-tab="circulars">circulars</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ============ ABOUT (landing) ============ -->
+<div class="tabpage" id="about" data-page="about">
+
+  <div class="win">
+    <div class="bar">ABOUT THIS SITE</div>
+    <div class="in">
+      <p>The Enfilade Center studies <b>castles</b>: flat-topped stacks of blocks sitting on a full-width base. A block is a maximal horizontal run inside a row, and the base counts as one of them. Project Euler problem 502 asks how many castles of a given size have an even number of blocks. We started there and did not stop there.</p>
+      <p>This site is the index, not the work. Reports, registry, datasets and exhibits live in the places listed below; this page exists so that you can find them without knowing which of us made them. Where a document is a draft or a proposal, it says so in the status column.</p>
+      <p class="note">Divisions: Representations (R), Enumeration (E), Numbers (N), Zoo (Z). Director: Engelbert Eggwall. Funding: approximately half.</p>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="bar">PAGES</div>
+    <div class="in">
+      <ul class="pagelist">
+        <li><a href="#reports" data-tab="reports">Reports and working notes</a>
+          <span class="d">Signed enumerations, conversion atlas, field guide, and what is still planned.</span></li>
+        <li><a href="#projects" data-tab="projects">Ongoing projects</a>
+          <span class="d">The project register, with which of them are actually running this cycle.</span></li>
+        <li><a href="#divisions" data-tab="divisions">Divisions</a>
+          <span class="d">R, E, N and Z, and what a division is and is not.</span></li>
+        <li><a href="#registry" data-tab="registry">Registry</a>
+          <span class="d">Living lists: discrepancies, counterexamples, sequences, zoo accessions.</span></li>
+        <li><a href="#circulars" data-tab="circulars">Director's circulars</a>
+          <span class="d">Announcements posted by the drafting room door. Not results.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="bar">SUBMIT / VISIT</div>
+    <div class="in">
+      <p>Contributions are accepted as reviewable patches to the Atlas. Attach a proof, a reproducible experiment, or a plain statement of what is still unknown. A computational observation is welcome. A computational observation labelled as a theorem is not.</p>
+      <p>Seminar meets Thursday evenings in borrowed teaching space. The room assignment is posted Wednesday and is more provisional than the mathematics. Commuters, evening students, adjuncts and technicians are all welcome. Bring a small example.</p>
+      <p class="note">Machine time in Room 6 is scheduled around the building's cooling load. Afternoon requests will be moved to evening without further discussion.</p>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="bar">RELATED SITES</div>
+    <div class="in">
+      <div class="scroll"><table>
+        <tr><td class="ti"><a href="https://example.org/foundry">Castle Foundry</a></td>
+            <td>Separate site. Builds, inspects and renders castles. Not maintained from this page</td></tr>
+        <tr><td class="ti"><a href="https://example.org/atlas">Enfilade Atlas</a></td>
+            <td>Separate repository. Definitions, families, claims and their evidence status</td></tr>
+        <tr><td class="ti"><a href="https://charlesreid1.com/wiki/Project_Euler/502">Euler 502 research wiki</a></td>
+            <td>Outside source. Problem history from 2017 onward, including the approaches that failed</td></tr>
+        <tr><td class="ti"><a href="https://projecteuler.net/problem=502">Project Euler, problem 502</a></td>
+            <td>Outside source. The original problem statement</td></tr>
+      </table></div>
+      <p class="note" style="margin-top:11px">Outside sources keep their own attribution. Where this Center restates a result, the restatement is ours and the mistake probably is too.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ REPORTS ============ -->
+<div class="tabpage" id="reports" data-page="reports">
+  <div class="win">
+    <div class="bar">REPORTS AND WORKING NOTES</div>
+    <div class="in">
+      <div class="scroll"><table>
+        <thead><tr><th>ID</th><th>TITLE</th><th>DIV</th><th>STATUS</th><th>UPDATED</th></tr></thead>
+        <tbody>
+        <tr><td class="id">ECRM-E-001</td>
+            <td class="ti"><a href="docs/ecrm-e-001.pdf">Signed enumeration: two derivations of the parity count</a> <span class="ft">PDF</span></td>
+            <td class="dv">E</td><td class="st">published</td><td class="up">2026-08-02</td></tr>
+        <tr><td class="id">ECRM-E-001s</td>
+            <td class="ti"><a href="docs/ecrm-e-001-supplement.pdf">Small-case agreement tables, supplement to ECRM-E-001</a> <span class="ft">PDF</span> <span class="ft">CSV</span></td>
+            <td class="dv">E</td><td class="st">published</td><td class="up">2026-08-02</td></tr>
+        <tr><td class="id">ECRM-R-001</td>
+            <td class="ti"><a href="docs/ecrm-r-001.pdf">Conversion atlas: heights, profiles, URD words, masks, containment trees</a> <span class="ft">PDF</span></td>
+            <td class="dv">R</td><td class="st draft">draft</td><td class="up">2026-08-29</td></tr>
+        <tr><td class="id">ECRM-Z-001</td>
+            <td class="ti"><a href="docs/ecrm-z-001.pdf">Field guide to castle morphology, with membership tests</a> <span class="ft">PDF</span></td>
+            <td class="dv">Z</td><td class="st draft">draft</td><td class="up">2026-09-06</td></tr>
+        <tr><td class="id">ECRM-Z-002</td>
+            <td class="ti"><a href="docs/ecrm-z-002.pdf">On the broad valley: a terminology disagreement, unresolved</a> <span class="ft">PDF</span></td>
+            <td class="dv">Z</td><td class="st">published</td><td class="up">2026-07-19</td></tr>
+        <tr><td class="id">ECRM-EN-002</td>
+            <td class="ti">Regime map for extreme width and extreme height <span class="ft">PDF</span></td>
+            <td class="dv">E/N</td><td class="st planned">planned</td><td class="up">&mdash;</td></tr>
+        <tr><td class="id">ECRM-R-000</td>
+            <td class="ti"><a href="docs/ecrm-r-000.pdf">Early note on convex castles</a> <span class="ft">PDF</span></td>
+            <td class="dv">R</td><td class="st super">superseded</td><td class="up">2026-05-11</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note" style="margin-top:11px">Superseded documents stay up with a pointer to what replaced them. An approach that failed to count every castle may still have produced a usable family or invariant, and we would rather you could read it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PROJECTS ============ -->
+<div class="tabpage" id="projects" data-page="projects">
+  <div class="win">
+    <div class="bar">PROJECT REGISTER</div>
+    <div class="in">
+      <div class="scroll"><table>
+        <tr><td>R-01</td><td>Comparative representations</td><td><span class="led half"></span>supporting</td></tr>
+        <tr><td>E-01</td><td>Signed enumeration</td><td><span class="led on"></span>active</td></tr>
+        <tr><td>E/N-02</td><td>Extreme dimensions</td><td><span class="led"></span>dormant</td></tr>
+        <tr><td>N-01</td><td>Sequence observatory</td><td><span class="led"></span>dormant</td></tr>
+        <tr><td>Z-01</td><td>Comparative morphology</td><td><span class="led on"></span>active</td></tr>
+        <tr><td>E/Z-02</td><td>Sampling and addresses</td><td><span class="led"></span>dormant</td></tr>
+        <tr><td>E/R-03</td><td>Beyond parity</td><td><span class="led"></span>dormant</td></tr>
+        <tr><td>R/E-04</td><td>Altered rules</td><td><span class="led"></span>dormant</td></tr>
+      </table></div>
+      <p class="note" style="margin-top:11px">Dormant means dormant with a written next action. Two projects are running because two is what we can actually staff this cycle.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DIVISIONS ============ -->
+<div class="tabpage" id="divisions" data-page="divisions">
+  <div class="win">
+    <div class="bar">DIVISIONS</div>
+    <div class="in">
+      <dl class="defs">
+        <dt>R &mdash; Representations</dt><dd>Encodings, equivalences, grammars, and what survives translation.</dd>
+        <dt>E &mdash; Enumeration</dt><dd>Counting methods, generating functions, recurrences, sampling.</dd>
+        <dt>N &mdash; Numbers</dt><dd>Sequences, exact arithmetic, difficult scales, numerical patterns.</dd>
+        <dt>Z &mdash; Zoo</dt><dd>Specimens, taxonomy, comparative morphology, public interpretation.</dd>
+      </dl>
+      <p class="note" style="margin-top:12px">A division is a way of asking questions. It is not a repository, a language, or a staffing line. A code like E/N-02 means two divisions are working together, not that a third has been created.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REGISTRY ============ -->
+<div class="tabpage" id="registry" data-page="registry">
+  <div class="win">
+    <div class="bar">REGISTRY</div>
+    <div class="in">
+      <div class="scroll"><table>
+        <tr><td class="ti"><a href="registry/discrepancies.html">Discrepancies registry</a> <span class="ft">HTML</span></td>
+            <td>Terms our sources define differently, left visible rather than quietly reconciled</td></tr>
+        <tr><td class="ti"><a href="registry/counterexamples.html">Counterexample index</a> <span class="ft">HTML</span></td>
+            <td>Failed conjectures with their minimal witnesses, so a dead approach stays findable</td></tr>
+        <tr><td class="ti"><a href="registry/sequences.html">Sequence ledger</a> <span class="ft">HTML</span> <span class="ft">CSV</span></td>
+            <td>Sourced counts and arithmetic observations, with the command that reproduced each row</td></tr>
+        <tr><td class="ti"><a href="registry/accessions.html">Zoo accession list</a> <span class="ft">HTML</span></td>
+            <td>Specimen numbers, geometry and classification. Numbers are stable; nicknames are not</td></tr>
+      </table></div>
+      <p class="note" style="margin-top:11px">The registry holds living lists rather than finished documents. Entries are added as they are found; nothing here is reconciled just to make the list shorter.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CIRCULARS ============ -->
+<div class="tabpage" id="circulars" data-page="circulars">
+  <div class="win">
+    <div class="bar">DIRECTOR'S CIRCULARS</div>
+    <div class="in">
+      <div class="printout">
+        <div class="sheet">
+          <div class="hd">CIRCULAR NO. 1 &nbsp;/&nbsp; ENFILADE CENTER &nbsp;/&nbsp; POSTED BY THE DRAFTING ROOM DOOR</div>
+          <p>The Center has acquired a second chalkboard, substantially increasing our capacity for parallel reasoning. The Enumeration Division is reminded that numerical agreement does not constitute a proof, even when obtained independently on both computers.</p>
+          <p>Thursday's proposed seminar concerns castles of unreasonably large height. Please bring a small example. The machine in Room 6 has already supplied a large one, and we are not yet satisfied with its explanation.</p>
+          <p>Students arriving after an evening shift are welcome. The first example will remain on the board.</p>
+          <p class="sig">Engelbert Eggwall, Director</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:12px">Back issues: <a href="docs/circular-001.pdf">No. 1</a> <span class="ft">PDF</span>. Circulars are announcements, not results. Nothing in one is evidence for anything.</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <hr>
+  Last updated: irregularly. &nbsp;Visitors: <span class="hits">00417</span> &nbsp;The N Division page has been under construction since the spring semester.<br><br>
+  Document links on this page are placeholders.<br><br>
+  The Enfilade Center, Hellmouth Community College and Engelbert Eggwall are fiction. The mathematics is not.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var body = document.body;
+  body.classList.remove("no-js");
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("nav.tabs a"));
+  var pages = Array.prototype.slice.call(document.querySelectorAll(".tabpage"));
+  var valid = {};
+  pages.forEach(function(p){ valid[p.getAttribute("data-page")] = true; });
+  var DEFAULT = "about";
+
+  function show(name, push){
+    if(!valid[name]){ name = DEFAULT; }
+    pages.forEach(function(p){
+      p.classList.toggle("on", p.getAttribute("data-page") === name);
+    });
+    tabs.forEach(function(t){
+      if(t.getAttribute("data-tab") === name){ t.setAttribute("aria-current","page"); }
+      else { t.removeAttribute("aria-current"); }
+    });
+    if(push){
+      if(history.replaceState){ history.replaceState(null, "", "#" + name); }
+      else { location.hash = name; }
+    }
+    // Return to top of the content when switching tabs.
+    window.scrollTo(0, 0);
+  }
+
+  // Any link with data-tab (tabs or in-page page list) switches tabs.
+  document.addEventListener("click", function(e){
+    var a = e.target.closest ? e.target.closest("a[data-tab]") : null;
+    if(!a){ return; }
+    e.preventDefault();
+    show(a.getAttribute("data-tab"), true);
+  });
+
+  window.addEventListener("hashchange", function(){
+    show((location.hash || "").replace(/^#/, ""), false);
+  });
+
+  show((location.hash || "").replace(/^#/, ""), false);
+})();
+</script>
+</body>
+</html>
