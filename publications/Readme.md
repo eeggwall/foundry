@@ -89,7 +89,7 @@ Series names the type of publication:
 * Computational Record (repository with notebook/data/environment details)
 * Seminar Notes
 * Problem Set
-* Erratum
+* Errata
 
 (This is a provisional list. Computational Record is the most fuzzy,
 since it is most likely to need to evolve. Current plan is to have this
