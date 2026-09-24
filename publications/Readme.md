@@ -32,11 +32,6 @@ Facts as of 2026-09-20, so the scheme is sized against the real thing:
 * Nine departments in `DEPARTMENTS.md`: R E N Z Q S T F X. More expected.
 * Twelve seminar arcs
 
-Artifact types the plans already name, scattered and not yet reconciled
-with anything below: technical report, working note, algorithm note,
-instrument report, field guide, sequence register, representation atlas, 
-discrepancies register, seminar material.
-
 ## Laying out the concepts
 
 ### Document classes
@@ -56,10 +51,6 @@ idea as a publication series, running one layer below it.
 
 The two systems should be built to look alike deliberately, or the 
 resemblance will become confusing later.
-
-The registers row is a key blank. "Living pointers, citable"
-does not pin down how exactly they are cited. The answer will
-determine whether registers are a class at all.
 
 ### No department letters in identifiers
 
